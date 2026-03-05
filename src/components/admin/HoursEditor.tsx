@@ -31,8 +31,8 @@ export default function HoursEditor() {
   return (
     <div>
       <h2 className="text-lg font-semibold mb-4">Business Hours</h2>
-      <div className="bg-white rounded-xl border border-gray-100 overflow-hidden mb-4">
-        <table className="w-full text-sm">
+      <div className="bg-white rounded-xl border border-gray-100 overflow-x-auto mb-4">
+        <table className="w-full text-sm min-w-[500px]">
           <thead>
             <tr className="border-b border-gray-100">
               <th className="text-left px-4 py-2 text-gray-500 font-normal">Day</th>

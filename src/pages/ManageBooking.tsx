@@ -46,8 +46,8 @@ export default function ManageBooking() {
   if (!booking) return <div className="min-h-screen flex items-center justify-center">Booking not found.</div>
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-start justify-center pt-12 px-4">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-md p-8">
+    <div className="min-h-screen bg-gray-50 flex items-start justify-center pt-8 sm:pt-12 px-4">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-md p-6 sm:p-8">
         <h1 className="text-2xl font-bold mb-6">Manage Booking</h1>
         <div className="border border-gray-100 rounded-xl p-4 space-y-2 text-sm mb-6">
           <div><span className="font-medium">Service:</span> {(booking.services as { name: string } | undefined)?.name}</div>

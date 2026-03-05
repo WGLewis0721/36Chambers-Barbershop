@@ -32,7 +32,7 @@ export default function SlotPicker({ date, slots, selected, onSelectDate, onSele
         min={today}
         value={localDate}
         onChange={handleDateChange}
-        className="border border-gray-200 rounded-lg p-2 mb-4 w-full"
+        className="border border-gray-200 rounded-lg p-2 mb-4 w-full text-base"
       />
       {loading && <p className="text-gray-500">Loading slots…</p>}
       {!loading && slots.length === 0 && localDate && (

@@ -20,7 +20,7 @@ export default function Login() {
   if (sent) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 max-w-sm w-full text-center">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 max-w-sm w-full text-center">
           <div className="text-4xl mb-4">📧</div>
           <h1 className="text-xl font-bold mb-2">Check your email</h1>
           <p className="text-gray-500">A magic link has been sent to {email}.</p>
@@ -31,7 +31,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 max-w-sm w-full">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8 max-w-sm w-full">
         <h1 className="text-2xl font-bold mb-6">Admin Login</h1>
         <form onSubmit={handleSubmit} className="grid gap-4">
           <div>
@@ -40,7 +40,7 @@ export default function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="border border-gray-200 rounded-lg p-2 w-full"
+              className="border border-gray-200 rounded-lg p-2 w-full text-base"
               placeholder="admin@example.com"
               required
             />
