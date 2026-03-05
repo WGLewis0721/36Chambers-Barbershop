@@ -1,11 +1,17 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { isSupabaseConfigured } from './lib/supabaseClient'
 import Book from './pages/Book'
 import Confirm from './pages/Confirm'
 import ManageBooking from './pages/ManageBooking'
 import Login from './pages/admin/Login'
 import Dashboard from './pages/admin/Dashboard'
+import NotConfigured from './components/NotConfigured'
 
 export default function App() {
+  if (!isSupabaseConfigured) {
+    return <NotConfigured />
+  }
+
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
