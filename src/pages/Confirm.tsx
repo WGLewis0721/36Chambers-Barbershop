@@ -27,8 +27,8 @@ export default function Confirm() {
   if (!booking) return <div className="min-h-screen flex items-center justify-center">Booking not found.</div>
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-start justify-center pt-12 px-4">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-md p-8 text-center">
+    <div className="min-h-screen bg-gray-50 flex items-start justify-center pt-8 sm:pt-12 px-4">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-md p-6 sm:p-8 text-center">
         <div className="text-5xl mb-4">✂️</div>
         <h1 className="text-2xl font-bold mb-2">You're booked!</h1>
         <p className="text-gray-500 mb-6">A confirmation has been noted for {booking.customer_email}.</p>

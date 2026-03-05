@@ -28,7 +28,8 @@ export default function BookingsBoard({ bookings, barbers, date, onDateChange, l
       </div>
       {loading && <p className="text-gray-500">Loading…</p>}
       {!loading && (
-        <div className="grid gap-4" style={{ gridTemplateColumns: `repeat(${activeBarbers.length || 1}, 1fr)` }}>
+        <div className="overflow-x-auto">
+          <div className="grid gap-4 min-w-[320px]" style={{ gridTemplateColumns: `repeat(${activeBarbers.length || 1}, minmax(200px, 1fr))` }}>
           {activeBarbers.map((barber) => {
             const barberBookings = bookings.filter((b) => b.barber_id === barber.id)
             return (
@@ -58,6 +59,7 @@ export default function BookingsBoard({ bookings, barbers, date, onDateChange, l
               </div>
             )
           })}
+          </div>
         </div>
       )}
     </div>

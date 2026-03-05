@@ -61,11 +61,11 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="bg-white border-b border-gray-100 px-6 py-4 flex items-center justify-between">
+      <header className="bg-white border-b border-gray-100 px-4 sm:px-6 py-4 flex items-center justify-between">
         <h1 className="text-lg font-bold">36Chambers Admin</h1>
         <button onClick={signOut} className="text-sm text-gray-500 hover:text-black">Sign out</button>
       </header>
-      <div className="flex border-b border-gray-100 bg-white px-6 overflow-x-auto">
+      <div className="flex border-b border-gray-100 bg-white px-4 sm:px-6 overflow-x-auto">
         {tabs.map((t) => (
           <button
             key={t.key}
@@ -78,7 +78,7 @@ export default function Dashboard() {
           </button>
         ))}
       </div>
-      <div className="p-6 max-w-6xl mx-auto">
+      <div className="p-4 sm:p-6 max-w-6xl mx-auto">
         {tab === 'bookings' && (
           <BookingsBoard bookings={bookings} barbers={barbers} date={date} onDateChange={setDate} loading={loading} />
         )}

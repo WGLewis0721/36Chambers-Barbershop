@@ -24,7 +24,7 @@ export default function BookingForm({ value, onChange }: Props) {
             type="text"
             value={value.name}
             onChange={(e) => set('name', e.target.value)}
-            className="border border-gray-200 rounded-lg p-2 w-full"
+            className="border border-gray-200 rounded-lg p-2 w-full text-base"
             placeholder="Jane Smith"
             required
           />
@@ -35,7 +35,7 @@ export default function BookingForm({ value, onChange }: Props) {
             type="email"
             value={value.email}
             onChange={(e) => set('email', e.target.value)}
-            className="border border-gray-200 rounded-lg p-2 w-full"
+            className="border border-gray-200 rounded-lg p-2 w-full text-base"
             placeholder="jane@example.com"
             required
           />
@@ -46,7 +46,7 @@ export default function BookingForm({ value, onChange }: Props) {
             type="tel"
             value={value.phone}
             onChange={(e) => set('phone', e.target.value)}
-            className="border border-gray-200 rounded-lg p-2 w-full"
+            className="border border-gray-200 rounded-lg p-2 w-full text-base"
             placeholder="+1 555 000 0000"
           />
         </div>

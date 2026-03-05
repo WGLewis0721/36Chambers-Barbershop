@@ -91,8 +91,8 @@ export default function Book() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-start justify-center pt-12 px-4">
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-md p-8">
+    <div className="min-h-screen bg-gray-50 flex items-start justify-center pt-8 sm:pt-12 px-4">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 w-full max-w-md p-6 sm:p-8">
         <div className="mb-6">
           <h1 className="text-2xl font-bold">Book an Appointment</h1>
           <div className="flex gap-1 mt-3">
