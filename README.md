@@ -69,6 +69,25 @@ npm run dev
 
 Open [http://localhost:5173/36Chambers-Barbershop/](http://localhost:5173/36Chambers-Barbershop/)
 
+### 6. Preview on a phone (or any device on the same Wi-Fi)
+
+The dev server is configured to listen on all network interfaces (`host: true`), so any device on the same Wi-Fi network can open the site.
+
+1. Start the dev server:
+   ```bash
+   npm run dev
+   ```
+2. Look for the **Network** URL printed in the terminal, e.g.:
+   ```
+   ➜  Local:   http://localhost:5173/36Chambers-Barbershop/
+   ➜  Network: http://192.168.1.42:5173/36Chambers-Barbershop/
+   ```
+3. On your phone, open a browser and navigate to the **Network** URL.
+
+> **Note:** Your phone must be connected to the **same Wi-Fi network** as your development machine. The IP address will differ each time your machine gets a new DHCP lease; just check the terminal output for the current address.
+
+The same applies to `npm run preview` (used to test the production build locally).
+
 ---
 
 ## GitHub Pages Deployment
