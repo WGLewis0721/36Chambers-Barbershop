@@ -1,14 +1,70 @@
-# 36Chambers Barbershop Booking App
+# 36 Chambers Barbershop
 
-A customer-facing booking flow + admin dashboard for a barbershop with 3 barbers.
+A barbershop website with a static public landing page and a React-based online booking app.
 
-**Stack:** Vite + React + TypeScript + Tailwind CSS + Supabase (Postgres + Edge Functions)  
-**Deployed to:** GitHub Pages (static frontend) + Supabase (backend)  
 **Live site:** [https://wglewis0721.github.io/36Chambers-Barbershop/](https://wglewis0721.github.io/36Chambers-Barbershop/)
 
 ---
 
-## Local Development
+## Project Overview
+
+This repository contains two parts:
+
+| Part | Technology | Description |
+|---|---|---|
+| **Landing page** | HTML · CSS · JavaScript | Public-facing static site (served via GitHub Pages) |
+| **Booking app** | React 19 · TypeScript · Vite 7 · Tailwind CSS v4 · Supabase | Customer booking flow and admin dashboard |
+
+The GitHub Pages deploy workflow publishes the **static landing page** (`index.html`, `css/`, `js/`) automatically on every push to `main`. The React booking app lives in `src/` and requires a Supabase backend to run.
+
+---
+
+## Landing Page
+
+The landing page (`index.html`) is a fully self-contained static site. No build step is required.
+
+### Features
+- Hero section with call-to-action
+- Services menu with prices
+- Barber team profiles
+- About / story section
+- Business hours & location
+- Booking CTA (call / email)
+- Responsive, mobile-first design
+- WCAG 2.1 AA accessible
+
+### Run locally
+
+Open `index.html` directly in a browser, or use any static file server:
+
+```bash
+npx serve .
+```
+
+---
+
+## Booking App
+
+The booking app (`src/`) is a React + TypeScript single-page application backed by Supabase.
+
+**Stack:** React 19 · TypeScript · Vite 7 · Tailwind CSS v4 · React Router v7 · Supabase (Postgres + Auth + Edge Functions)
+
+### Features
+
+#### Customer Flow
+1. **Select Service** — name, duration, price
+2. **Select Barber** — specific barber or "Any barber"
+3. **Pick Date & Time** — available slots only, respects business hours, barber hours, time-off, and existing bookings
+4. **Enter Details** — name + email required, phone optional
+5. **Confirm** — booking created in Supabase
+6. **Confirmation page** — shows booking details and provides a cancel link via `manage_token`
+
+#### Admin Dashboard
+- Login via Supabase Auth (email magic link)
+- View bookings by date with barber columns
+- CRUD for services and barbers
+- Edit business hours (per day of week)
+- Manage time-off blocks per barber or shop-wide
 
 ### Prerequisites
 
@@ -48,6 +104,8 @@ supabase db push --db-url postgresql://postgres:<password>@<host>:5432/postgres 
 
 Or paste the contents of `supabase/migrations/001_initial_schema.sql` into the Supabase SQL Editor.
 
+The schema includes the following key tables: `barbers`, `services`, `business_hours`, `barber_hours`, `time_off`, `bookings`
+
 ### 4. Deploy Edge Functions
 
 ```bash
@@ -72,7 +130,7 @@ Open [http://localhost:5173/36Chambers-Barbershop/](http://localhost:5173/36Cham
 
 ### 6. Preview on a phone (or any device on the same Wi-Fi)
 
-The dev server is configured to listen on all network interfaces (`host: true`), so any device on the same Wi-Fi network can open the site.
+The dev server listens on all network interfaces (`host: true`), so any device on the same network can connect.
 
 1. Start the dev server:
    ```bash
@@ -83,43 +141,43 @@ The dev server is configured to listen on all network interfaces (`host: true`),
    ➜  Local:   http://localhost:5173/36Chambers-Barbershop/
    ➜  Network: http://192.168.1.42:5173/36Chambers-Barbershop/
    ```
-3. On your phone, open a browser and navigate to the **Network** URL.
+3. Open the **Network** URL on your phone.
 
-> **Note:** Your phone must be connected to the **same Wi-Fi network** as your development machine. The IP address will differ each time your machine gets a new DHCP lease; just check the terminal output for the current address.
+> **Note:** Your phone and development machine must be on the same Wi-Fi network. The same applies to `npm run preview`.
 
-The same applies to `npm run preview` (used to test the production build locally).
+### 7. Build for production
+
+```bash
+npm run build
+```
+
+The output is placed in `dist/`.
 
 ---
 
 ## GitHub Pages Deployment
 
-The site is automatically deployed to GitHub Pages on every push to `main`.  
-**Live URL (open on any device, no dev server needed):**  
+The **landing page** is automatically deployed to GitHub Pages on every push to `main` via `.github/workflows/deploy.yml`. No build step is needed — the workflow copies `index.html`, `css/`, and `js/` directly to the deploy artifact.
+
+**Live URL:**  
 👉 [https://wglewis0721.github.io/36Chambers-Barbershop/](https://wglewis0721.github.io/36Chambers-Barbershop/)
 
 ### One-time setup (already done; listed here for reference)
 
-#### 1. Add repository secrets
-
-In your GitHub repository → Settings → Secrets and variables → Actions, add:
-
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_ANON_KEY`
-
-#### 2. Enable GitHub Pages
-
-In Settings → Pages, set source to **GitHub Actions**.
-
-#### 3. Push to `main`
-
-The workflow at `.github/workflows/deploy.yml` will build and deploy automatically on every push to `main`.
+1. In **Settings → Pages**, set source to **GitHub Actions**.
+2. Push to `main` — the workflow handles everything else.
 
 ---
 
 ## Project Structure
 
 ```
-├── src/
+├── index.html                  # Static landing page
+├── css/
+│   └── styles.css              # Landing page styles
+├── js/
+│   └── main.js                 # Landing page scripts
+├── src/                        # React booking app
 │   ├── lib/
 │   │   ├── supabaseClient.ts   # Supabase client init
 │   │   ├── types.ts            # TypeScript interfaces
@@ -153,42 +211,15 @@ The workflow at `.github/workflows/deploy.yml` will build and deploy automatical
 │       └── 001_initial_schema.sql
 └── .github/
     └── workflows/
-        └── deploy.yml
+        └── deploy.yml          # Deploys landing page to GitHub Pages
 ```
-
----
-
-## Features
-
-### Customer Flow
-1. **Select Service** — name, duration, price
-2. **Select Barber** — specific barber or "Any barber"
-3. **Pick Date & Time** — available slots only, respects business hours, barber hours, time-off, existing bookings + buffer
-4. **Enter Details** — name + email required, phone optional
-5. **Confirm** — booking created in Supabase
-6. **Confirmation page** — shows details, provides cancel link via `manage_token`
-
-### Admin Dashboard
-- Login via Supabase Auth (email magic link)
-- View bookings by date with barber columns
-- CRUD for services and barbers
-- Edit business hours (per day of week)
-- Manage time-off blocks per barber or shop-wide
-
----
-
-## Data Model
-
-See `supabase/migrations/001_initial_schema.sql` for the full schema.
-
-Key tables: `barbers`, `services`, `business_hours`, `barber_hours`, `time_off`, `bookings`
 
 ---
 
 ## Security
 
-- RLS enabled on all tables
-- Public read: barbers/services/hours/time_off (active only)
-- No direct public read of bookings (except via `manage_token` cookie claim)
-- Booking creation/cancellation via Edge Functions using service role key
-- Admin routes require authenticated Supabase user
+- RLS enabled on all Supabase tables
+- Public read: barbers, services, hours, time_off (active records only)
+- No direct public read of bookings (access controlled via `manage_token`)
+- Booking creation/cancellation via Edge Functions using the service role key
+- Admin routes require an authenticated Supabase user
