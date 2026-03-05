@@ -3,7 +3,8 @@
 A customer-facing booking flow + admin dashboard for a barbershop with 3 barbers.
 
 **Stack:** Vite + React + TypeScript + Tailwind CSS + Supabase (Postgres + Edge Functions)  
-**Deployed to:** GitHub Pages (static frontend) + Supabase (backend)
+**Deployed to:** GitHub Pages (static frontend) + Supabase (backend)  
+**Live site:** [https://wglewis0721.github.io/36Chambers-Barbershop/](https://wglewis0721.github.io/36Chambers-Barbershop/)
 
 ---
 
@@ -92,18 +93,24 @@ The same applies to `npm run preview` (used to test the production build locally
 
 ## GitHub Pages Deployment
 
-### 1. Add repository secrets
+The site is automatically deployed to GitHub Pages on every push to `main`.  
+**Live URL (open on any device, no dev server needed):**  
+👉 [https://wglewis0721.github.io/36Chambers-Barbershop/](https://wglewis0721.github.io/36Chambers-Barbershop/)
+
+### One-time setup (already done; listed here for reference)
+
+#### 1. Add repository secrets
 
 In your GitHub repository → Settings → Secrets and variables → Actions, add:
 
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
 
-### 2. Enable GitHub Pages
+#### 2. Enable GitHub Pages
 
 In Settings → Pages, set source to **GitHub Actions**.
 
-### 3. Push to `main`
+#### 3. Push to `main`
 
 The workflow at `.github/workflows/deploy.yml` will build and deploy automatically on every push to `main`.
 
