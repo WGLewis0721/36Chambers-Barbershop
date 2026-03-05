@@ -1,0 +1,58 @@
+{
+  // ── Editor ────────────────────────────────────────────────────────────────
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.rulers": [100],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // ── TypeScript / JavaScript ───────────────────────────────────────────────
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+
+  // ── Tailwind CSS ──────────────────────────────────────────────────────────
+  "tailwindCSS.experimental.classRegex": [
+    ["clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+
+  // ── Deno (Supabase Edge Functions) ────────────────────────────────────────
+  "deno.enablePaths": ["supabase/functions"],
+  "deno.lint": true,
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": true,
+    "https://esm.sh": true
+  },
+
+  // ── File associations ─────────────────────────────────────────────────────
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "files.exclude": {
+    "node_modules": true,
+    "dist": true,
+    ".git": true
+  },
+
+  // ── GitHub Copilot ────────────────────────────────────────────────────────
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "text": "Always use TypeScript with strict types. Prefer React functional components with hooks. Use Tailwind CSS utility classes for styling. Follow the file structure in src/components and src/pages."
+    }
+  ],
+  "github.copilot.chat.reviewSelection.instructions": [
+    {
+      "text": "Check for: proper TypeScript types, accessibility (ARIA labels, alt text), no hardcoded secrets, correct Supabase usage via src/lib/api.ts, and Tailwind CSS patterns."
+    }
+  ],
+  "chat.mcp.enabled": true
+}

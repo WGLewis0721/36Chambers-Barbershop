@@ -1,0 +1,38 @@
+{
+  // Model Context Protocol (MCP) server configuration for GitHub Copilot.
+  // See: https://code.visualstudio.com/docs/copilot/copilot-mcp
+  //
+  // Each server listed here is started automatically when Copilot Chat is
+  // opened and its tools become available as context inside the chat panel.
+  //
+  // Secrets (tokens, keys) should be stored in VS Code's secret storage or
+  // environment variables – never hardcoded here.
+  "servers": {
+    // ── GitHub ───────────────────────────────────────────────────────────────
+    // Gives Copilot the ability to read issues, pull requests, commits, and
+    // repository metadata for this project without leaving the editor.
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        // Set GITHUB_PERSONAL_ACCESS_TOKEN in your shell profile or VS Code
+        // secret storage. Never commit an actual token here.
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      }
+    },
+
+    // ── Filesystem ───────────────────────────────────────────────────────────
+    // Lets Copilot read and reference project files directly, improving
+    // suggestions for components, API helpers, and migrations.
+    "filesystem": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "${workspaceFolder}"
+      ]
+    }
+  }
+}
