@@ -1,0 +1,856 @@
+/* =====================================================
+   36 Chambers Barbershop
+   styles.css
+   ===================================================== */
+
+/* --- Color Tokens --- */
+:root {
+  --black:        #0A0A0A;
+  --black-soft:   #141414;
+  --card-bg:      #1A1A1A;
+  --card-border:  #2A2A2A;
+  --gold:         #C9A84C;
+  --gold-dark:    #A07830;
+  --gold-light:   #E0C068;
+  --red:          #8B1A1A;
+  --white:        #F5F5F0;
+  --text-muted:   #9A9A8E;
+  --text-light:   #C8C8BE;
+  --nav-height:   4rem;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--black);
+  color: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --- Accessibility --- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: var(--gold);
+  color: var(--black);
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 0 0 4px 4px;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* --- Layout Helpers --- */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section-padding {
+  padding: 5rem 0;
+}
+
+.section-dark {
+  background: var(--black-soft);
+}
+
+/* --- Typography --- */
+.section-eyebrow {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+  color: var(--white);
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.section-title.light {
+  color: var(--white);
+}
+
+.section-subtitle {
+  color: var(--text-light);
+  font-size: 1.0625rem;
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-header.centered {
+  text-align: center;
+}
+
+.section-header.centered .section-subtitle {
+  margin: 0 auto;
+}
+
+.section-header.light .section-title,
+.section-header.light .section-subtitle {
+  color: var(--white);
+}
+
+.gold-divider {
+  width: 3rem;
+  height: 3px;
+  background: var(--gold);
+  margin: 1.25rem 0;
+  border-radius: 2px;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+.btn-outline:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.btn-large {
+  font-size: 1.0625rem;
+  padding: 1rem 2.5rem;
+}
+
+/* --- Header / Navigation --- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.site-header.scrolled {
+  background: rgba(10, 10, 10, 0.97);
+  border-bottom-color: rgba(201, 168, 76, 0.3);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+
+.logo-link,
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-scissors {
+  font-size: 1.4rem;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.logo-text {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+
+.main-nav {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding: 0.5rem 0.75rem;
+  border-radius: 3px;
+  transition: color 0.2s;
+}
+.nav-link:hover {
+  color: var(--white);
+}
+
+.nav-list .nav-cta {
+  background: var(--gold);
+  color: var(--black);
+  padding: 0.45rem 1.1rem;
+  border-radius: 3px;
+  font-weight: 600;
+  margin-left: 0.25rem;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-list .nav-cta:hover {
+  background: var(--gold-light);
+  color: var(--black);
+}
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+.hamburger-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+/* Open state */
+.hamburger[aria-expanded="true"] .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger[aria-expanded="true"] .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger[aria-expanded="true"] .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav overlay */
+.main-nav.open {
+  display: flex;
+  position: fixed;
+  top: var(--nav-height);
+  left: 0;
+  right: 0;
+  background: var(--black-soft);
+  border-bottom: 1px solid var(--card-border);
+  padding: 1rem 1.25rem 1.5rem;
+  z-index: 99;
+}
+.main-nav.open .nav-list {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  width: 100%;
+}
+.main-nav.open .nav-link {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  font-size: 1rem;
+}
+.main-nav.open .nav-cta {
+  margin-left: 0;
+  margin-top: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+/* Desktop nav */
+@media (min-width: 768px) {
+  .hamburger { display: none; }
+  .main-nav { display: flex !important; }
+}
+
+/* --- Hero --- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.45) 0%,
+    rgba(10, 10, 10, 0.7) 60%,
+    rgba(10, 10, 10, 0.9) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: calc(var(--nav-height) + 2rem) 1.25rem 4rem;
+  max-width: 760px;
+}
+
+.hero-eyebrow {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  line-height: 0.92;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.hero-title-sub {
+  color: var(--gold);
+}
+
+.hero-tagline {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.375rem);
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin: 1.25rem 0 2.5rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Banner Strip --- */
+.banner-strip {
+  background: var(--gold);
+  padding: 0.875rem 0;
+}
+
+.banner-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.banner-icon {
+  font-size: 1rem;
+}
+
+.banner-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.banner-divider {
+  width: 1px;
+  height: 1.25rem;
+  background: rgba(10, 10, 10, 0.3);
+}
+
+.banner-link {
+  color: var(--black);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- Services --- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 2rem 1.75rem;
+  transition: border-color 0.25s, transform 0.2s;
+}
+.service-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.service-icon {
+  font-size: 1.75rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.service-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.service-desc {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.service-price {
+  font-family: 'Bebas Neue', 'Oswald', sans-serif;
+  font-size: 1.875rem;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+}
+
+/* --- Team --- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.barber-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.2s;
+}
+.barber-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+
+.barber-img-wrap {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.barber-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.barber-card:hover .barber-img {
+  transform: scale(1.04);
+}
+
+.barber-info {
+  padding: 1.5rem;
+}
+
+.barber-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.barber-title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.barber-bio {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --- About --- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.about-img {
+  width: 100%;
+  border-radius: 8px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.about-text .section-title {
+  color: var(--white);
+}
+
+.about-text p {
+  color: var(--text-light);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+}
+
+/* --- Hours & Location --- */
+.hours-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .hours-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+}
+
+.hours-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.hours-table td {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--card-border);
+  font-size: 1rem;
+}
+
+.hours-day {
+  color: var(--text-light);
+  font-weight: 500;
+  width: 60%;
+}
+
+.hours-time {
+  color: var(--gold);
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+.hours-closed .hours-day,
+.hours-closed .hours-time {
+  color: var(--text-muted);
+}
+
+.hours-note {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
+.location-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.location-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.location-icon {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.location-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+
+.location-value {
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.location-link {
+  transition: color 0.2s;
+}
+.location-link:hover {
+  color: var(--gold);
+}
+
+/* --- Booking CTA --- */
+.section-booking {
+  background: var(--red);
+  padding: 5rem 0;
+}
+
+.booking-inner {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.booking-inner .section-title {
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  margin-bottom: 1rem;
+}
+
+.booking-sub {
+  color: rgba(245, 245, 240, 0.8);
+  font-size: 1.0625rem;
+  margin-bottom: 2.5rem;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section-booking .btn-outline {
+  border-color: rgba(245, 245, 240, 0.5);
+}
+.section-booking .btn-outline:hover {
+  border-color: var(--white);
+}
+
+/* --- Footer --- */
+.site-footer {
+  background: var(--black-soft);
+  border-top: 1px solid var(--card-border);
+  padding: 4rem 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+.footer-brand p {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+}
+
+.footer-section h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.footer-section ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-section a {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  transition: color 0.2s;
+}
+.footer-section a:hover {
+  color: var(--white);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--card-border);
+  padding-top: 1.5rem;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* --- Animations --- */
+.fade-in,
+.fade-in-left,
+.fade-in-right {
+  opacity: 0;
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-in {
+  transform: translateY(24px);
+}
+
+.fade-in-left {
+  transform: translateX(-32px);
+}
+
+.fade-in-right {
+  transform: translateX(32px);
+}
+
+.fade-in.visible,
+.fade-in-left.visible,
+.fade-in-right.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .fade-in-left,
+  .fade-in-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

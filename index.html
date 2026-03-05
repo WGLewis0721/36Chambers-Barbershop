@@ -1,23 +1,361 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>36Chambers Barbershop</title>
-    <script>
-      // GitHub Pages SPA redirect: convert ?/path back to /path
-      (function () {
-        var redirect = sessionStorage.redirect;
-        delete sessionStorage.redirect;
-        if (redirect && redirect !== location.href) {
-          history.replaceState(null, null, redirect);
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>36 Chambers Barbershop — Sharp Cuts. Clean Lines. Classic Feel.</title>
+  <meta name="description" content="36 Chambers Barbershop delivers sharp fades, clean lineups, and old-school service. Book your appointment today." />
+  <meta name="theme-color" content="#0A0A0A" />
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="36 Chambers Barbershop" />
+  <meta property="og:description" content="Sharp Cuts. Clean Lines. Classic Feel." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&h=630&fit=crop" />
+  <meta property="og:url" content="https://wglewis0721.github.io/36Chambers-Barbershop/" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="36 Chambers Barbershop" />
+  <meta name="twitter:description" content="Sharp Cuts. Clean Lines. Classic Feel." />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&h=630&fit=crop" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===================== SKIP LINK ===================== -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner container">
+      <a href="#hero" class="logo-link" aria-label="36 Chambers Barbershop — Home">
+        <span class="logo-scissors" aria-hidden="true">✂</span>
+        <span class="logo-text">36 Chambers</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#team" class="nav-link">Our Barbers</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#hours" class="nav-link">Hours</a></li>
+          <li><a href="#book" class="nav-link nav-cta">Book Now</a></li>
+        </ul>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+        <span class="hamburger-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="hero" aria-label="Hero">
+      <div class="hero-bg" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1920&h=1080&fit=crop"
+          alt=""
+          class="hero-bg-img"
+          loading="eager"
+          fetchpriority="high" />
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-content fade-in">
+        <p class="hero-eyebrow">Welcome to</p>
+        <h1 class="hero-title">36 Chambers<br /><span class="hero-title-sub">Barbershop</span></h1>
+        <p class="hero-tagline">Sharp Cuts. Clean Lines. Classic Feel.</p>
+        <div class="hero-buttons">
+          <a href="#book" class="btn btn-primary">Book Appointment</a>
+          <a href="#services" class="btn btn-outline">View Services</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BANNER STRIP ===================== -->
+    <div class="banner-strip">
+      <div class="container">
+        <div class="banner-strip-inner">
+          <div class="banner-item">
+            <span class="banner-icon" aria-hidden="true">✂</span>
+            <span>Walk-ins Welcome</span>
+          </div>
+          <div class="banner-divider" aria-hidden="true"></div>
+          <div class="banner-item">
+            <span class="banner-icon" aria-hidden="true">⏰</span>
+            <span>Mon – Sat | 9 AM – 7 PM</span>
+          </div>
+          <div class="banner-divider" aria-hidden="true"></div>
+          <div class="banner-item">
+            <span class="banner-icon" aria-hidden="true">📞</span>
+            <a href="#book" class="banner-link">Call to Reserve</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== SERVICES ===================== -->
+    <section class="section-padding" id="services" aria-label="Services">
+      <div class="container">
+        <div class="section-header centered">
+          <span class="section-eyebrow">What We Offer</span>
+          <h2 class="section-title">Our Services</h2>
+          <p class="section-subtitle">Every chair, every cut — delivered with precision and respect for the craft.</p>
+        </div>
+        <div class="services-grid">
+
+          <article class="service-card fade-in">
+            <div class="service-icon" aria-hidden="true">✂</div>
+            <h3 class="service-name">Haircut</h3>
+            <p class="service-desc">Classic scissor or clipper cut, styled to your preference. Includes consultation and finish.</p>
+            <p class="service-price">$30</p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon" aria-hidden="true">✦</div>
+            <h3 class="service-name">Skin Fade</h3>
+            <p class="service-desc">Tight taper down to the skin. Low, mid, or high — clean and precise every time.</p>
+            <p class="service-price">$35</p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon" aria-hidden="true">▐</div>
+            <h3 class="service-name">Lineup / Edge Up</h3>
+            <p class="service-desc">Crisp lines around the hairline, temples, and neck. Perfect as a standalone or add-on.</p>
+            <p class="service-price">$15</p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon" aria-hidden="true">◈</div>
+            <h3 class="service-name">Beard Trim</h3>
+            <p class="service-desc">Shape, clean, and detail your beard to complement your look. Hot towel finish included.</p>
+            <p class="service-price">$20</p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon" aria-hidden="true">❋</div>
+            <h3 class="service-name">Cut &amp; Beard Combo</h3>
+            <p class="service-desc">Full haircut paired with a beard trim and lineup. The complete package.</p>
+            <p class="service-price">$50</p>
+          </article>
+
+          <article class="service-card fade-in">
+            <div class="service-icon" aria-hidden="true">✦</div>
+            <h3 class="service-name">Kids Cut</h3>
+            <p class="service-desc">Patient and precise cuts for the little ones. Scissor or clipper, parent-approved.</p>
+            <p class="service-price">$20</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TEAM ===================== -->
+    <section class="section-padding section-dark" id="team" aria-label="Our Barbers">
+      <div class="container">
+        <div class="section-header centered light">
+          <span class="section-eyebrow">Meet the Team</span>
+          <h2 class="section-title">Our Barbers</h2>
+          <p class="section-subtitle">Skilled hands. Sharp tools. Dedicated craft.</p>
+        </div>
+        <div class="team-grid">
+
+          <article class="barber-card fade-in">
+            <div class="barber-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&face"
+                alt="Master barber at 36 Chambers"
+                class="barber-img"
+                loading="lazy" />
+            </div>
+            <div class="barber-info">
+              <h3 class="barber-name">Coming Soon</h3>
+              <p class="barber-title">Master Barber</p>
+              <p class="barber-bio">Our team of skilled barbers brings years of experience and passion to every cut.</p>
+            </div>
+          </article>
+
+          <article class="barber-card fade-in">
+            <div class="barber-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&face"
+                alt="Barber at 36 Chambers"
+                class="barber-img"
+                loading="lazy" />
+            </div>
+            <div class="barber-info">
+              <h3 class="barber-name">Coming Soon</h3>
+              <p class="barber-title">Barber</p>
+              <p class="barber-bio">Specializing in fades and lineups with an eye for clean, precise detail work.</p>
+            </div>
+          </article>
+
+          <article class="barber-card fade-in">
+            <div class="barber-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&face"
+                alt="Barber at 36 Chambers"
+                class="barber-img"
+                loading="lazy" />
+            </div>
+            <div class="barber-info">
+              <h3 class="barber-name">Coming Soon</h3>
+              <p class="barber-title">Barber</p>
+              <p class="barber-bio">Bringing classic technique and modern style to every client who sits in the chair.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section-padding" id="about" aria-label="About 36 Chambers">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-image fade-in-left">
+            <img
+              src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=700&h=900&fit=crop"
+              alt="Inside 36 Chambers Barbershop"
+              class="about-img"
+              loading="lazy" />
+          </div>
+          <div class="about-text fade-in-right">
+            <span class="section-eyebrow">Our Story</span>
+            <h2 class="section-title">More Than a Haircut.</h2>
+            <div class="gold-divider" aria-hidden="true"></div>
+            <p>36 Chambers was built on one belief: every person who sits in the chair deserves the full treatment. Not just a cut — an experience.</p>
+            <p>Named for discipline, precision, and mastery, we bring that same energy to every service we offer. Whether it's your first visit or your fiftieth, you'll leave looking sharp and feeling right.</p>
+            <p>We're old-school in the best way — respectful, skilled, and serious about the craft. No shortcuts. No second-rate work. Just clean cuts, every time.</p>
+            <a href="#book" class="btn btn-primary">Book Your Appointment</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOURS & LOCATION ===================== -->
+    <section class="section-padding section-dark" id="hours" aria-label="Hours and Location">
+      <div class="container">
+        <div class="hours-grid">
+          <div class="fade-in">
+            <span class="section-eyebrow">When to Find Us</span>
+            <h2 class="section-title light">Hours &amp; Location</h2>
+            <div class="gold-divider" aria-hidden="true"></div>
+            <table class="hours-table" aria-label="Business hours">
+              <tbody>
+                <tr>
+                  <td class="hours-day">Monday – Friday</td>
+                  <td class="hours-time">9:00 AM – 7:00 PM</td>
+                </tr>
+                <tr>
+                  <td class="hours-day">Saturday</td>
+                  <td class="hours-time">9:00 AM – 5:00 PM</td>
+                </tr>
+                <tr class="hours-closed">
+                  <td class="hours-day">Sunday</td>
+                  <td class="hours-time">Closed</td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="hours-note">Walk-ins welcome. Appointments recommended on weekends.</p>
+          </div>
+          <div class="location-box fade-in">
+            <div class="location-detail">
+              <span class="location-icon" aria-hidden="true">📍</span>
+              <div>
+                <p class="location-label">Address</p>
+                <p class="location-value">Address Coming Soon</p>
+              </div>
+            </div>
+            <div class="location-detail">
+              <span class="location-icon" aria-hidden="true">📞</span>
+              <div>
+                <p class="location-label">Phone</p>
+                <a href="#book" class="location-value location-link">Contact Us</a>
+              </div>
+            </div>
+            <div class="location-detail">
+              <span class="location-icon" aria-hidden="true">✉</span>
+              <div>
+                <p class="location-label">Email</p>
+                <a href="mailto:info@36chambersbarber.com" class="location-value location-link">info@36chambersbarber.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BOOKING CTA ===================== -->
+    <section class="section-booking" id="book" aria-label="Book an Appointment">
+      <div class="container">
+        <div class="booking-inner fade-in">
+          <span class="section-eyebrow">Ready to Get Fresh?</span>
+          <h2 class="section-title">Book Your Appointment</h2>
+          <p class="booking-sub">Call us, walk in, or send us a message — we'll get you in the chair.</p>
+          <div class="booking-actions">
+            <a href="#book" class="btn btn-primary btn-large">📞 Call to Book</a>
+            <a href="mailto:info@36chambersbarber.com" class="btn btn-outline btn-large">✉ Send a Message</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="logo-scissors" aria-hidden="true">✂</span>
+            <span class="logo-text">36 Chambers</span>
+          </div>
+          <p>Sharp Cuts. Clean Lines. Classic Feel.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Haircut</a></li>
+            <li><a href="#services">Skin Fade</a></li>
+            <li><a href="#services">Beard Trim</a></li>
+            <li><a href="#services">Kids Cut</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="#hours">Hours</a></li>
+            <li><a href="#hours">Location</a></li>
+            <li><a href="#book">Book Appointment</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="mailto:info@36chambersbarber.com">Email Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="footer-year"></span> 36 Chambers Barbershop. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
