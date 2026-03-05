@@ -12,6 +12,9 @@ node_modules/
 # Distribution / compiled
 dist/
 
+# TypeScript build info
+*.tsbuildinfo
+
 # Environment variables
 .env
 .env.local
