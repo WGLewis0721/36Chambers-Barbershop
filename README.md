@@ -1,73 +1,168 @@
-# React + TypeScript + Vite
+# 36Chambers Barbershop Booking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A customer-facing booking flow + admin dashboard for a barbershop with 3 barbers.
 
-Currently, two official plugins are available:
+**Stack:** Vite + React + TypeScript + Tailwind CSS + Supabase (Postgres + Edge Functions)  
+**Deployed to:** GitHub Pages (static frontend) + Supabase (backend)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Local Development
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 20+
+- A [Supabase](https://supabase.com) project
+- [Supabase CLI](https://supabase.com/docs/guides/cli) (optional, for Edge Functions)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. Clone & install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/WGLewis0721/36Chambers-Barbershop.git
+cd 36Chambers-Barbershop
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Environment variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Copy `.env.example` to `.env.local` and fill in your Supabase project details:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+cp .env.example .env.local
 ```
+
+```
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+### 3. Database setup
+
+Run the migration in the Supabase SQL editor (or via CLI):
+
+```bash
+# Via Supabase CLI
+supabase db push --db-url postgresql://postgres:<password>@<host>:5432/postgres < supabase/migrations/001_initial_schema.sql
+```
+
+Or paste the contents of `supabase/migrations/001_initial_schema.sql` into the Supabase SQL Editor.
+
+### 4. Deploy Edge Functions
+
+```bash
+supabase functions deploy availability
+supabase functions deploy bookings
+supabase functions deploy bookings-cancel
+```
+
+Or deploy all at once:
+
+```bash
+supabase functions deploy
+```
+
+### 5. Run locally
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173/36Chambers-Barbershop/](http://localhost:5173/36Chambers-Barbershop/)
+
+---
+
+## GitHub Pages Deployment
+
+### 1. Add repository secrets
+
+In your GitHub repository → Settings → Secrets and variables → Actions, add:
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+### 2. Enable GitHub Pages
+
+In Settings → Pages, set source to **GitHub Actions**.
+
+### 3. Push to `main`
+
+The workflow at `.github/workflows/deploy.yml` will build and deploy automatically on every push to `main`.
+
+---
+
+## Project Structure
+
+```
+├── src/
+│   ├── lib/
+│   │   ├── supabaseClient.ts   # Supabase client init
+│   │   ├── types.ts            # TypeScript interfaces
+│   │   └── api.ts              # Edge Function callers
+│   ├── components/
+│   │   ├── ServicePicker.tsx
+│   │   ├── BarberPicker.tsx
+│   │   ├── SlotPicker.tsx
+│   │   ├── BookingForm.tsx
+│   │   └── admin/
+│   │       ├── BookingsBoard.tsx
+│   │       ├── ServicesCrud.tsx
+│   │       ├── BarbersCrud.tsx
+│   │       ├── HoursEditor.tsx
+│   │       └── TimeOffEditor.tsx
+│   ├── pages/
+│   │   ├── Book.tsx            # 5-step booking wizard
+│   │   ├── Confirm.tsx         # Post-booking confirmation
+│   │   ├── ManageBooking.tsx   # Cancel/manage via token
+│   │   └── admin/
+│   │       ├── Login.tsx       # Magic link login
+│   │       └── Dashboard.tsx   # Admin dashboard
+│   ├── App.tsx
+│   └── main.tsx
+├── supabase/
+│   ├── functions/
+│   │   ├── availability/       # GET /availability
+│   │   ├── bookings/           # POST /bookings
+│   │   └── bookings-cancel/    # POST /bookings/cancel
+│   └── migrations/
+│       └── 001_initial_schema.sql
+└── .github/
+    └── workflows/
+        └── deploy.yml
+```
+
+---
+
+## Features
+
+### Customer Flow
+1. **Select Service** — name, duration, price
+2. **Select Barber** — specific barber or "Any barber"
+3. **Pick Date & Time** — available slots only, respects business hours, barber hours, time-off, existing bookings + buffer
+4. **Enter Details** — name + email required, phone optional
+5. **Confirm** — booking created in Supabase
+6. **Confirmation page** — shows details, provides cancel link via `manage_token`
+
+### Admin Dashboard
+- Login via Supabase Auth (email magic link)
+- View bookings by date with barber columns
+- CRUD for services and barbers
+- Edit business hours (per day of week)
+- Manage time-off blocks per barber or shop-wide
+
+---
+
+## Data Model
+
+See `supabase/migrations/001_initial_schema.sql` for the full schema.
+
+Key tables: `barbers`, `services`, `business_hours`, `barber_hours`, `time_off`, `bookings`
+
+---
+
+## Security
+
+- RLS enabled on all tables
+- Public read: barbers/services/hours/time_off (active only)
+- No direct public read of bookings (except via `manage_token` cookie claim)
+- Booking creation/cancellation via Edge Functions using service role key
+- Admin routes require authenticated Supabase user
